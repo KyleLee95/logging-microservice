@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes import router as log_router
+from logging_service.routes import router as log_router
 
 app = FastAPI()
 

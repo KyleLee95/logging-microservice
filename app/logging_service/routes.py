@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
-from app.models import LogModel
-from app.database import log_collection
+from logging_service.models import LogModel
+from database import log_collection
 from bson import ObjectId
 from typing import List
 
