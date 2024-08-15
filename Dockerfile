@@ -1,10 +1,16 @@
 FROM python:3.10-slim
 
-WORKDIR /app
+WORKDIR /
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./app /app
 
-RUN pip install --no-cache-dir fastapi uvicorn motor pydantic
+ENV MONGODB_URL="mongodb://mongodb:27019/logging_db"
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8009
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8009"]
 

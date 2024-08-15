@@ -1,18 +1,18 @@
 version: "3.8"
 
 services:
-  mongodb:
+  logging-mongodb:
     image: mongo:latest
     container_name: logging-mongodb
     ports:
-      - "27017:27017" # Expose MongoDB on port 27017
+      - "27019:27017"
 
-  favorites-service:
+  logging-service:
     build: .
     container_name: logging-service
     ports:
-      - "8000:8000" # Expose FastAPI on port 8000
+      - "8009:8009"
     environment:
-      - MONGODB_URL=mongodb://mongodb:27017/logging_db
+      - MONGODB_URL=mongodb://logging-mongodb:27017/logging_db
     depends_on:
-      - mongodb # Ensure MongoDB starts before the FastAPI service
+      - logging-mongodb
